@@ -24,3 +24,25 @@ function amogus() {
 let run = true
 let stoped = true
 let game_running = false
+let game_start_time = 0
+while (run) {
+    if (stoped) {
+        amogus()
+        game_running = false
+        stoped = false
+    }
+    
+    if (!game_running) {
+        if (input.buttonIsPressed(Button.A)) {
+            game_start_time = input.runningTime()
+            game_running = true
+            clear()
+        }
+        
+    } else if (input.buttonIsPressed(Button.B)) {
+        stoped = true
+    } else {
+        basic.showNumber(Math.trunc((input.runningTime() - game_start_time) / 1000))
+    }
+    
+}

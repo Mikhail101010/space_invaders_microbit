@@ -15,5 +15,19 @@ def amogus():
 run = True
 stoped = True
 game_running = False
+game_start_time = 0
 while run:
-    
+    if stoped:
+        amogus()
+        game_running = False
+        stoped = False
+    if not game_running:
+        if input.button_is_pressed(Button.A):
+            game_start_time = input.running_time()
+            game_running = True
+            clear()
+    else:
+        if input.button_is_pressed(Button.B):
+            stoped = True
+        else:
+            basic.show_number(int((input.running_time() - game_start_time) / 1000))
